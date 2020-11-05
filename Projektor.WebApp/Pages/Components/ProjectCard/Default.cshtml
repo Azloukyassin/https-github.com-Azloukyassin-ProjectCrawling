@@ -1,0 +1,86 @@
+﻿@model Projektor.Core.Models.Project
+
+<div class="eight wide column divide">
+    <div class="ui grid attached border-orange">
+        <div class="sixteen wide column">
+            <div class="ui center aligned large header">
+                @Model.Title
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui center aligned large header">
+                <div class="ui horizontal divider">
+                    <div class="ui header medium">Details</div>
+                </div>
+            </div>
+            <p>Ort : @Model.Location</p>
+            <p>Referenznummer : @Model.ReferenceNumber</p>
+            <p>Start : @Model.StartingDate</p>
+            <p>Dauer : @Model.Duration</p>
+            <p>Position : @Model.Position</p>
+        </div>
+        <div class="eight wide column">
+            <div class="ui center aligned large header">
+                <div class="ui horizontal divider">
+                    <div class="ui header medium">Aufgaben</div>
+                </div>
+            </div>
+            <div class="ui bulleted list">
+                @foreach (var task in Model.Tasks)
+                {
+                    <div class="item">@task</div>
+                }
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui horizontal divider">
+                <div class="ui header medium">Qualifikationen</div>
+            </div>
+            <div class="ui bulleted list">
+                @foreach (var qualification in Model.Qualifications)
+                {
+                    <div class="item">@qualification</div>
+                }
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui horizontal divider">
+                <div class="ui header medium">Einsatzinformationen</div>
+            </div>
+            <div class="ui bulleted list">
+                @foreach (var information in Model.EmploymentInformation)
+                {
+                    <div class="item">@information</div>
+                }
+            </div>
+        </div>
+        <div class="sixteen wide center aligned attached column">
+            @if (Model.HasContact)
+            {
+                <div class="ui horizontal divider">
+                    <div class="ui header medium">Kontakt</div>
+                </div>
+                @if (Model.HasAnsprechpartner)
+                {
+                    <div class="ui center aligned header">Ansprechpartner(in) : @Model.Contact.Name</div>
+                }
+                @if (Model.HasTelephoneNumber)
+                {
+                    <a class="ui green label large" href="@Model.Contact.TelephoneNumber">
+                        <i class="phone icon"></i>@Model.Contact.TelephoneNumber
+                    </a>
+                }
+                @if (Model.HasEmailNumber)
+                {
+                    <a class="ui green label large" href="@Model.Contact.Email">
+                        <i class="mail icon"></i> @Model.Contact.Email
+                    </a>
+                }
+            }
+            <div class="ui hidden divider"></div>
+            <a class="bottom-attached" href="@Model.Uri.OriginalString" target="_blank">
+                <div class="ui horizontal divider"><i class="globe icon"></i>   Zum Projekt</div>
+            </a>
+        </div>
+    </div>
+</div>

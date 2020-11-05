@@ -1,0 +1,69 @@
+﻿@page "/{pagination?}"
+@model Projektor.WebApp.Pages.IndexModel
+@{
+    Layout = "_Layout";
+}
+<div class="ui section horizontal divider">
+    <div class="ui large center aligned header">Aktionen</div>
+</div>
+@if (Model.IsEngineStarted)
+{
+    <div class="ui icon message">
+        <i class="notched circle loading icon"></i>
+        <div class="content">
+            <div class="header">
+                @Model.SearchTitle
+            </div>
+            <p>@Model.SearchText</p>
+        </div>
+    </div>
+    <form method="post">
+        <button class="ui button negative" asp-page-handler="StopEngine">Suche stoppen</button>
+    </form>
+}
+else
+{
+    <form method="post">
+        <button class="ui button positive" asp-page-handler="StartEngine">Suche starten</button>
+    </form>
+}
+@if (!Model.HasProjects)
+{
+    <div class="ui message">
+        <div class="header">
+            Keine Projekte vorhanden.
+        </div>
+        <p>Haben Sie schon versucht, den Suchvorgang zu starten?</p>
+    </div>
+}
+else
+{
+    <div class="ui section horizontal divider"><div class="ui large center aligned header">Projekte</div></div>
+    <div class="ui grid">
+        @foreach (var project in Model.Projects)
+        {
+            <vc:project-card project="project"></vc:project-card>
+        }
+    </div>
+}
+<div class="ui section horizontal divider">
+    <div class="ui large center aligned header">Navigation</div>
+</div>
+<div class="ui grid">
+    <div class="row">
+        <div class="sixteen wide column">
+            @if (Model.HasPreviousPage)
+            {
+                <form method="post">
+                    <a class="ui left floated button" href="/@(Model.Pagination - 1)">Vorherige Seite</a>
+                </form>
+            }
+            @if (Model.HasNextPage)
+            {
+                <form method="post">
+                    <a class="ui right floated button" href="/@(Model.Pagination + 1)">Nächste Seite</a>
+                </form>
+            }
+        </div>
+    </div>
+</div>

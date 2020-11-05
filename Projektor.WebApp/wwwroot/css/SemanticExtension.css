@@ -1,0 +1,12 @@
+﻿.eight.wide.column.divide {
+    padding: 50px 40px;
+}
+
+.ui.grid.attached.border-orange {
+    border-top: 2px solid #f2711c;
+    border-radius: 2px;
+}
+
+a.bottom-attached .button {
+    border-radius: 0;
+}

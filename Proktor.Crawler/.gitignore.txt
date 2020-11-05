@@ -1,0 +1,12 @@
+﻿################################################################################
+# Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
+################################################################################
+
+/.vs
+/Projektor.Core/bin/Debug/netstandard2.0
+/Projektor.Core/obj
+/Projektor.SeleniumParallelLibrary/bin
+/Projektor.SeleniumParallelLibrary/obj
+/Projektor.WebApp/bin/Debug/netcoreapp2.2
+/Projektor.WebApp/obj
+/packages
